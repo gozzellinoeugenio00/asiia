@@ -1,50 +1,10 @@
-import { revalidatePath } from 'next/cache';
-import { createClient } from '@/utils/supabase/server';
 import { ArrowLeft, Briefcase, PlusCircle, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 
+import { getProjects, addProject, deleteProject } from '@/app/actions/projects';
+
 export default async function PortfolioPage() {
-    const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-
-    // Fetch existing projects
-    const { data: projects } = await supabase
-        .from('projects')
-        .select('*')
-        .eq('user_id', user?.id)
-        .order('created_at', { ascending: false });
-
-    async function addProject(formData: FormData) {
-        'use server';
-        const supabase = await createClient();
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) return;
-
-        const title = formData.get('title') as string;
-        const description = formData.get('description') as string;
-
-        if (title && description) {
-            await supabase.from('projects').insert({
-                user_id: user.id,
-                title,
-                description,
-            });
-            revalidatePath('/portfolio');
-        }
-    }
-
-    async function deleteProject(formData: FormData) {
-        'use server';
-        const supabase = await createClient();
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) return;
-
-        const id = formData.get('id') as string;
-        if (id) {
-            await supabase.from('projects').delete().eq('id', id).eq('user_id', user.id);
-            revalidatePath('/portfolio');
-        }
-    }
+    const { data: projects } = await getProjects();
 
     return (
         <div className="container mx-auto px-4 py-8 max-w-4xl">

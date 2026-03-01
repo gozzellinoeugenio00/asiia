@@ -1,6 +1,7 @@
-import { revalidatePath } from 'next/cache';
+
 import { createClient } from '@/utils/supabase/server';
 import { Megaphone, BriefcaseBusiness, PlusCircle } from 'lucide-react';
+import { getAnnouncements, addAnnouncement } from '@/app/actions/announcements';
 
 export default async function AnnunciPage() {
     const supabase = await createClient();
@@ -9,36 +10,7 @@ export default async function AnnunciPage() {
     // Check if user is a company to show the form
     const isCompany = user?.user_metadata?.role === 'company';
 
-    // Fetch existing announcements with company names linked. Since we have companies table linked via auth.users, maybe we fetch companies individually or just rely on raw_user_meta_data if possible. But better simply join on our profiles/companies table if needed.
-    // For simplicity, we just fetch announcements. If we created a profile linkage, we could potentially join.
-    const { data: announcements, error } = await supabase
-        .from('announcements')
-        .select(`
-            *,
-            companies (
-                company_name
-            )
-        `)
-        .order('created_at', { ascending: false });
-
-    async function addAnnouncement(formData: FormData) {
-        'use server';
-        const supabase = await createClient();
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user || user.user_metadata?.role !== 'company') return;
-
-        const title = formData.get('title') as string;
-        const description = formData.get('description') as string;
-
-        if (title && description) {
-            await supabase.from('announcements').insert({
-                company_id: user.id,
-                title,
-                description,
-            });
-            revalidatePath('/annunci');
-        }
-    }
+    const { data: announcements, error } = await getAnnouncements();
 
     return (
         <div className="container mx-auto px-4 py-12 max-w-5xl">
