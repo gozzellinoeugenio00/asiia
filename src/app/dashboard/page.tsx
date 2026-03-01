@@ -1,12 +1,35 @@
-import { Users, Briefcase, MessagesSquare, Activity, ChevronRight, BarChart } from 'lucide-react';
+import { Users, Briefcase, MessagesSquare, Activity, ChevronRight, BarChart, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
+import { createClient } from '@/utils/supabase/server';
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    // Fallback if metadata is missing
+    const role = user?.user_metadata?.role || 'professional';
+    const name = user?.user_metadata?.first_name || 'Utente';
     return (
         <div className="container mx-auto px-4 py-8">
-            <div className="mb-8">
-                <h1 className="text-3xl font-bold mb-2">Benvenuto, Admin 👋</h1>
-                <p className="text-muted-foreground">Ecco una panoramica della community ASIIA oggi.</p>
+            <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 className="text-3xl font-bold mb-2">Benvenuto, {name} 👋</h1>
+                    <p className="text-muted-foreground">Ecco una panoramica della community ASIIA oggi.</p>
+                </div>
+
+                <div className="flex gap-4">
+                    {role === 'professional' ? (
+                        <Link href="/portfolio" className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-6 py-3 rounded-xl hover:bg-primary/90 transition-all shadow-lg hover:-translate-y-1">
+                            <Briefcase className="w-5 h-5" />
+                            Gestisci il tuo Portfolio
+                        </Link>
+                    ) : (
+                        <Link href="/annunci" className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-6 py-3 rounded-xl hover:bg-primary/90 transition-all shadow-lg hover:-translate-y-1">
+                            <ExternalLink className="w-5 h-5" />
+                            Pubblica Annuncio
+                        </Link>
+                    )}
+                </div>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
@@ -14,7 +37,7 @@ export default function DashboardPage() {
                     <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                         <Users className="w-16 h-16" />
                     </div>
-                    <p className="text-muted-foreground font-medium mb-1">Totale Professionisti</p>
+                    <p className="text-muted-foreground font-medium mb-1">Totale visualizzazioni del profilo</p>
                     <div className="flex items-end gap-3">
                         <h2 className="text-4xl font-extrabold">1,245</h2>
                         <span className="text-emerald-400 text-sm font-bold bg-emerald-400/10 px-2 py-1 rounded">+12%</span>
@@ -25,7 +48,7 @@ export default function DashboardPage() {
                     <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                         <Briefcase className="w-16 h-16" />
                     </div>
-                    <p className="text-muted-foreground font-medium mb-1">Aziende Registrate</p>
+                    <p className="text-muted-foreground font-medium mb-1">Aziende Contattate</p>
                     <div className="flex items-end gap-3">
                         <h2 className="text-4xl font-extrabold">340</h2>
                         <span className="text-emerald-400 text-sm font-bold bg-emerald-400/10 px-2 py-1 rounded">+5%</span>
