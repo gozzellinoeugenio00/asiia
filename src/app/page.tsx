@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import { ArrowRight, Bot, Users, Building2, Newspaper } from 'lucide-react';
+import Link from "next/link";
+import { ArrowRight, Bot, Users, Building2, Newspaper } from "lucide-react";
 
 export default function Home() {
   return (
@@ -16,11 +16,15 @@ export default function Home() {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 max-w-4xl">
-            Connetti il tuo futuro con l'<span className="gradient-text">Intelligenza Artificiale</span>
+            <span className="gradient-text">ASIAA</span>
+            Associazione Sviluppo e Integrazione Intelligenza Artificiale
           </h1>
 
           <p className="text-xl text-muted-foreground mb-10 max-w-2xl">
-            Unisciti ad ASIIA. La piattaforma esclusiva che fa incontrare talenti dell'AI, aziende innovative e condivide le ultime novità del settore.
+            Unisciti ad ASIIA. La prima associazione no profit, con marchio
+            registrato a livello Europeo a creare un'ecosistema dove aziende,
+            professionisti,appassionati e studenti possono entrare in contatto
+            tra loro
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full justify-center max-w-md mx-auto">
@@ -51,7 +55,9 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold mb-3">Professionisti AI</h3>
               <p className="text-muted-foreground">
-                Crea il tuo profilo, mostra i tuoi progetti e connettiti con le aziende che cercano le tue competenze in machine learning, data science e AI engineering.
+                Crea il tuo profilo, mostra i tuoi progetti e connettiti con le
+                aziende che cercano le tue competenze in machine learning, data
+                science e AI engineering.
               </p>
             </div>
 
@@ -61,7 +67,9 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold mb-3">Aziende Innovative</h3>
               <p className="text-muted-foreground">
-                Trova i migliori talenti per scalare il tuo business. Esplora profili verificati e contatta direttamente i professionisti per i tuoi progetti innovativi.
+                Trova i migliori talenti per scalare il tuo business. Esplora
+                profili verificati e contatta direttamente i professionisti per
+                i tuoi progetti innovativi.
               </p>
             </div>
 
@@ -71,7 +79,8 @@ export default function Home() {
               </div>
               <h3 className="text-xl font-bold mb-3">News e Aggiornamenti</h3>
               <p className="text-muted-foreground">
-                Resta sempre aggiornato sulle ultime novità, i trend tecnologici e le scoperte nel mondo dell'Intelligenza Artificiale.
+                Resta sempre aggiornato sulle ultime novità, i trend tecnologici
+                e le scoperte nel mondo dell'Intelligenza Artificiale.
               </p>
             </div>
           </div>
@@ -83,9 +92,12 @@ export default function Home() {
         <div className="absolute inset-0 bg-primary/5 z-0" />
         <div className="container relative z-10 mx-auto px-4 text-center">
           <Bot className="w-16 h-16 mx-auto text-primary mb-6 animate-float" />
-          <h2 className="text-4xl font-bold mb-6">Pronto a far parte della rivoluzione?</h2>
+          <h2 className="text-4xl font-bold mb-6">
+            Pronto a far parte della rivoluzione?
+          </h2>
           <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">
-            La community di ASIIA ti aspetta. Che tu sia un professionista, un'azienda o un appassionato.
+            La community di ASIIA ti aspetta. Che tu sia un professionista,
+            un'azienda o un appassionato.
           </p>
           <Link
             href="/register"
