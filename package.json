@@ -6,9 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:link": "supabase link --project-ref svmhgkzlzwtbdxnjtyeo",
+    "gen:types": "npx supabase gen types typescript --project-id svmhgkzlzwtbdxnjtyeo --schema public > types/supabase.ts"
   },
   "dependencies": {
+    "@dotlottie/react-player": "^1.6.19",
+    "@lottiefiles/dotlottie-react": "^0.18.3",
     "@radix-ui/react-slot": "^1.2.4",
     "@supabase/ssr": "^0.8.0",
     "@supabase/supabase-js": "^2.98.0",

@@ -1,16 +1,25 @@
-
-import { createClient } from '@/utils/supabase/server';
+'use client'
 import { Megaphone, BriefcaseBusiness, PlusCircle } from 'lucide-react';
 import { getAnnouncements, addAnnouncement } from '@/app/actions/announcements';
+import { useState, useEffect } from 'react';
+import { AnnouncementWithCompany } from '../../../types/models';
+import AnnouncementsCard from '@/components/AnnouncementsCard';
 
-export default async function AnnunciPage() {
-    const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+export default function AnnunciPage() {
+    const [announcements, setAnnouncements] = useState<AnnouncementWithCompany[]>([]);
+    const [loading, setLoading] = useState(true);
 
-    // Check if user is a company to show the form
-    const isCompany = user?.user_metadata?.role === 'company';
+    useEffect(() => {
+        const fetchAnnouncements = async () => {
+            setLoading(true);
+            const response = await getAnnouncements();
+            const data = response.data;
+            setAnnouncements(data);
+            setLoading(false);
+        };
+        fetchAnnouncements();
+    }, []);
 
-    const { data: announcements, error } = await getAnnouncements();
 
     return (
         <div className="container mx-auto px-4 py-12 max-w-5xl">
@@ -26,7 +35,7 @@ export default async function AnnunciPage() {
                 </div>
             </div>
 
-            <div className="grid lg:grid-cols-3 gap-8 items-start relative">
+            <div className=" gap-8 items-start relative">
                 <div className="lg:col-span-2 space-y-6">
                     {(!announcements || announcements.length === 0) ? (
                         <div className="text-center py-16 glass rounded-3xl border border-white/5">
@@ -35,29 +44,15 @@ export default async function AnnunciPage() {
                             <p className="text-sm text-muted-foreground mt-2">Torna a trovarci presto per nuove opportunità.</p>
                         </div>
                     ) : (
-                        announcements.map((annuncio) => (
-                            <div key={annuncio.id} className="glass p-8 rounded-2xl border border-white/5 relative group hover:border-primary/50 transition-all shadow-md">
-                                <h3 className="text-2xl font-bold text-primary mb-3 leading-tight">{annuncio.title}</h3>
-                                {annuncio.companies?.company_name && (
-                                    <div className="inline-block bg-primary/10 text-primary-foreground text-xs font-bold px-3 py-1 rounded-full mb-4">
-                                        🏢 {annuncio.companies.company_name}
-                                    </div>
-                                )}
-                                <p className="text-foreground whitespace-pre-wrap leading-relaxed">{annuncio.description}</p>
-                                <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between text-sm text-muted-foreground gap-4">
-                                    <p className="opacity-70 flex items-center">
-                                        Inserito il {new Date(annuncio.created_at).toLocaleDateString()}
-                                    </p>
-                                    <button className="bg-white/5 hover:bg-white/10 text-foreground font-medium px-6 py-2 rounded-xl transition-colors border border-white/10">
-                                        Candidati
-                                    </button>
-                                </div>
-                            </div>
-                        ))
+                        <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
+                            {announcements.map((annuncio) => (
+                                <AnnouncementsCard key={annuncio.id} annuncio={annuncio} />
+                            ))}
+                        </div>
                     )}
                 </div>
 
-                {isCompany && (
+                {/* {isCompany && (
                     <div className="lg:col-span-1 lg:sticky lg:top-24">
                         <div className="glass p-6 rounded-3xl border border-primary/30 relative overflow-hidden shadow-2xl">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
@@ -81,7 +76,7 @@ export default async function AnnunciPage() {
                             </form>
                         </div>
                     </div>
-                )}
+                )} */}
             </div>
         </div>
     );

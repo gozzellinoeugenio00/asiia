@@ -2,21 +2,20 @@
 
 import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
+import { AnnouncementWithCompany } from '../../../types/models';
 
-export async function getAnnouncements() {
+export async function getAnnouncements(): Promise<{ data: AnnouncementWithCompany[]; error: Error | null }> {
     const supabase = await createClient();
 
     const { data: announcements, error } = await supabase
         .from('announcements')
         .select(`
             *,
-            companies (
-                company_name
-            )
+            companies(company_name)
         `)
         .order('created_at', { ascending: false });
 
-    return { data: announcements, error };
+    return { data: announcements as AnnouncementWithCompany[], error };
 }
 
 export async function addAnnouncement(formData: FormData) {

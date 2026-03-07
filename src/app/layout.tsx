@@ -6,6 +6,7 @@ import { createClient } from "@/utils/supabase/server";
 import { UserCircle, LogOut } from "lucide-react";
 import { logout } from "@/app/auth/actions";
 import PhoneButton from "@/components/PhoneButton";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,13 +31,22 @@ export default async function RootLayout({
       <body
         className={`${inter.className} min-h-screen bg-background text-foreground flex flex-col`}
       >
-        <header className="sticky top-0 z-50 w-full border-b border-white/10 glass">
-          <div className="container mx-auto px-4 h-16 flex items-center justify-between">
+        <header className="sticky top-0 z-50 w-full  glass">
+          <div className="container mx-auto h-16 flex items-center justify-between">
             <Link
               href="/"
               className="font-bold text-2xl tracking-tight gradient-text"
             >
-              ASIIA
+              <div className="flex flex-row items-center gap-1">
+                <DotLottieReact
+                  src="https://lottie.host/db4feeb4-33ba-40ad-8310-125464c23f13/MvnDLjkWkj.lottie"
+                  loop
+                  autoplay
+                  className="w-16 h-16"
+
+                />
+                <p>ASIIA</p>
+              </div>
             </Link>
             <nav className="hidden md:flex items-center gap-6">
               <Link

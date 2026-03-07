@@ -1,45 +1,33 @@
 "use client";
-import { Globe, Users, Trophy, ChevronDown, ChevronUp } from "lucide-react";
+import { Globe, Users, Trophy, Search, Building2, Rocket } from "lucide-react";
 import { useEffect, useState } from "react";
-
-const mockCompanies = [
-  {
-    id: 1,
-    name: "TechNova",
-    industry: "Financial Technology",
-    employees: "50-200",
-    location: "Milano, Italia",
-    description:
-      "Sviluppiamo soluzioni AI per frodi finanziarie e analisi del rischio predittiva.",
-    tags: ["Fintech", "AI", "Machine Learning"],
-    logo: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=150&h=150&fit=crop&q=80",
-  },
-  {
-    id: 2,
-    name: "HealthBrain AI",
-    industry: "Healthcare",
-    employees: "10-50",
-    location: "Roma, Italia",
-    description:
-      "Piattaforma di diagnostica avanzata basata su deep learning e computer vision per analizzare radiografie.",
-    tags: ["Healthtech", "Computer Vision"],
-    logo: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=150&h=150&fit=crop&q=80",
-  },
-  {
-    id: 3,
-    name: "EcoSmart",
-    industry: "Green Energy",
-    employees: "200+",
-    location: "Torino, Italia",
-    description:
-      "Ottimizzazione di reti elettriche intelligenti attraverso modelli predittivi.",
-    tags: ["Greentech", "Data Science", "IoT"],
-    logo: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=150&h=150&fit=crop&q=80",
-  },
-];
+import { Company } from "../../../types/models";
+import { getCompaniesAsync } from "../actions/companies";
 
 export default function CompaniesPage() {
-  const [expandText, setExpandText] = useState(false);
+  const [companies, setCompanies] = useState<Company[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState<"providers" | "seekers">("providers");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const fetchCompanies = async () => {
+    setLoading(true);
+    const isProvider = activeTab === "providers";
+    const response = await getCompaniesAsync(isProvider);
+    if (response.data) {
+      setCompanies(response.data);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchCompanies();
+  }, [activeTab]);
+
+  const filteredCompanies = companies.filter(company =>
+    company.company_name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    company.industry.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -47,91 +35,130 @@ export default function CompaniesPage() {
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
           Aziende all'<span className="gradient-text">Avanguardia</span>
         </h1>
-        <p className=" text-muted-foreground max-w-2xl mx-auto">
-          Scopri le aziende che stanno plasmando il futuro attraverso
-          l'Intelligenza Artificiale. ASIAA per le aziende si pone come
-          l'ecosistema perfetto per riuscire ad integrare e sviluppare
-          l'Intelligenza Artificiale all'interno dei processi produttivi
-          {expandText ? "." : "..."}
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          Connettiti con il cuore pulsante dell'innovazione AI in Italia.
         </p>
-        {expandText && (
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            Registrandosi nel form (la registrazione non ha o implica nessun
-            costo) si accede al database che è diviso in due parti, la prima
-            parte comprende i dati delle aziende che sviluppano ed integrano
-            l'IA all'interno dei processi produttivi e possono fornirti il
-            servizio che vi interessa. Dall'altra parte ci sono le aziende che
-            invece si sono registrate per scrivere news, pubblicare offerte di
-            lavoro, contattare professionisti, rimanere aggiornati sulle news
-            compresi i bandi con i fondi del PNRR.
-          </p>
-        )}
-        <button
-          onClick={() => setExpandText(!expandText)}
-          className="mt-4 text-sm text-primary hover:underline"
-        >
-          {expandText ? "Mostra meno" : "Mostra di più"}
-        </button>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {mockCompanies.map((company) => (
-          <div
-            key={company.id}
-            className="glass rounded-3xl p-8 hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group"
+      {/* Tabs */}
+      <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-12">
+        <div className="flex p-1 bg-white/5 border border-white/10 rounded-2xl glass">
+          <button
+            onClick={() => setActiveTab("providers")}
+            className={`flex items-center gap-2 px-6 py-3 rounded-xl transition-all font-bold ${activeTab === "providers"
+                ? "bg-primary text-primary-foreground shadow-lg"
+                : "text-muted-foreground hover:text-foreground"
+              }`}
           >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-150" />
+            <Building2 className="w-5 h-5" />
+            Offerta Servizi AI
+          </button>
+          <button
+            onClick={() => setActiveTab("seekers")}
+            className={`flex items-center gap-2 px-6 py-3 rounded-xl transition-all font-bold ${activeTab === "seekers"
+                ? "bg-primary text-primary-foreground shadow-lg"
+                : "text-muted-foreground hover:text-foreground"
+              }`}
+          >
+            <Search className="w-5 h-5" />
+            Ricerca Soluzioni/Talenti
+          </button>
+        </div>
 
-            <div className="relative z-10 flex flex-col h-full">
-              <div className="flex items-start justify-between mb-6">
-                <img
-                  src={company.logo}
-                  alt={company.name}
-                  className="w-20 h-20 rounded-2xl object-cover border-4 border-white/10 shadow-xl"
-                />
-                <button className="bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground p-3 rounded-xl transition-colors">
-                  <Globe className="w-5 h-5" />
+        {/* Search */}
+        <div className="relative w-full max-w-md">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
+          <input
+            type="text"
+            placeholder="Cerca per nome o settore..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-white focus:outline-none focus:ring-2 focus:ring-primary/50 glass transition-all"
+          />
+        </div>
+      </div>
+
+      {/* Information Box */}
+      <div className="max-w-4xl mx-auto mb-16 glass p-8 rounded-3xl border-primary/20 bg-primary/5">
+        <div className="flex items-start gap-4">
+          <div className="bg-primary/20 p-3 rounded-2xl shrink-0">
+            <Rocket className="text-primary w-6 h-6" />
+          </div>
+          <p className="text-muted-foreground leading-relaxed">
+            {activeTab === "providers"
+              ? "In questa sezione trovi le aziende specializzate nello sviluppo e integrazione di soluzioni di Intelligenza Artificiale, pronte ad accompagnare il tuo business nel futuro."
+              : "Qui sono elencate le realtà alla ricerca di competenze AI, partner tecnologici o professionisti per implementare l'innovazione nei propri processi produttivi."}
+          </p>
+        </div>
+      </div>
+
+      {loading ? (
+        <div className="flex justify-center items-center h-64">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        </div>
+      ) : filteredCompanies.length > 0 ? (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredCompanies.map((company) => (
+            <div
+              key={company.id}
+              className="glass rounded-3xl p-8 hover:-translate-y-2 transition-all duration-300 relative overflow-hidden group"
+            >
+              <div className={`absolute top-0 right-0 w-32 h-32 ${activeTab === "providers" ? 'bg-primary/20' : 'bg-purple-500/20'} rounded-bl-full -mr-16 -mt-16 transition-transform group-hover:scale-150`} />
+
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-start justify-between mb-6">
+                  <div className="w-20 h-20 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl font-bold text-primary overflow-hidden">
+                    {company.website ? (
+                      <img
+                        src={`https://logo.clearbit.com/${new URL(company.website.startsWith('http') ? company.website : `https://${company.website}`).hostname}`}
+                        alt={company.company_name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => (e.currentTarget.style.display = 'none')}
+                      />
+                    ) : (
+                      <span>{company.company_name.charAt(0)}</span>
+                    )}
+                  </div>
+                  <a
+                    href={company.website || "#"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-primary/20 text-primary hover:bg-primary hover:text-primary-foreground p-3 rounded-xl transition-colors"
+                  >
+                    <Globe className="w-5 h-5" />
+                  </a>
+                </div>
+
+                <h3 className="text-2xl font-bold mb-2 line-clamp-1">{company.company_name}</h3>
+                <p className="text-primary font-medium mb-4 uppercase text-xs tracking-wider">
+                  {company.industry}
+                </p>
+
+                <p className="text-muted-foreground mb-6 flex-1 line-clamp-3">
+                  {company.city}, {company.province} — {company.referent_role}
+                </p>
+
+                <div className="flex items-center gap-6 mb-6 text-sm text-foreground/80">
+                  <div className="flex items-center gap-2">
+                    <Users className="w-4 h-4 text-primary" />
+                    <span>{company.company_type}</span>
+                  </div>
+                </div>
+
+                <button className="w-full mt-4 bg-primary text-primary-foreground hover:bg-primary/90 font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
+                  Dettagli Azienda
                 </button>
               </div>
-
-              <h3 className="text-2xl font-bold mb-2">{company.name}</h3>
-              <p className="text-primary font-medium mb-4">
-                {company.industry}
-              </p>
-
-              <p className="text-muted-foreground mb-6 flex-1">
-                {company.description}
-              </p>
-
-              <div className="flex items-center gap-6 mb-6 text-sm text-foreground/80">
-                <div className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-primary" />
-                  <span>{company.employees} DIP.</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Trophy className="w-4 h-4 text-purple-500" />
-                  <span>{company.location}</span>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-2">
-                {company.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="bg-white/5 border border-white/10 text-xs px-3 py-1 rounded-full text-foreground/80"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <button className="w-full mt-8 bg-primary text-primary-foreground hover:bg-primary/90 font-bold py-3 rounded-xl transition-colors">
-                Contatta l'Azienda
-              </button>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-20 glass rounded-[3rem]">
+          <Users className="w-16 h-16 mx-auto text-muted-foreground mb-4 opacity-20" />
+          <h3 className="text-2xl font-bold mb-2">Nessuna azienda trovata</h3>
+          <p className="text-muted-foreground">Prova ad affinare la ricerca o cambia categoria.</p>
+        </div>
+      )}
     </div>
   );
 }

@@ -16,7 +16,7 @@ export default function Home() {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 max-w-4xl">
-            <span className="gradient-text">ASIAA</span>
+            <span className="gradient-text">ASIAA </span> <br />
             Associazione Sviluppo e Integrazione Intelligenza Artificiale
           </h1>
 
