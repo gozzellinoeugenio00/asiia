@@ -59,6 +59,7 @@ export type Database = {
           company_type: string
           id: string
           industry: string
+          is_ai_provider: boolean | null
           mobile_phone: string | null
           operating_office: string | null
           pec_email: string
@@ -80,6 +81,7 @@ export type Database = {
           company_type: string
           id: string
           industry: string
+          is_ai_provider?: boolean | null
           mobile_phone?: string | null
           operating_office?: string | null
           pec_email: string
@@ -101,6 +103,7 @@ export type Database = {
           company_type?: string
           id?: string
           industry?: string
+          is_ai_provider?: boolean | null
           mobile_phone?: string | null
           operating_office?: string | null
           pec_email?: string

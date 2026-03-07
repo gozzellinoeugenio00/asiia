@@ -7,6 +7,7 @@ import { UserCircle, LogOut } from "lucide-react";
 import { logout } from "@/app/auth/actions";
 import PhoneButton from "@/components/PhoneButton";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
+import MobileMenu from "@/components/MobileMenu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -81,46 +82,49 @@ export default async function RootLayout({
                 Annunci
               </Link>
             </nav>
-            <div className="flex items-center gap-4">
-              {user ? (
-                <div className="flex items-center gap-4">
-                  <Link
-                    href="/dashboard"
-                    className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                  >
-                    <UserCircle className="w-5 h-5" />
-                    <span>
-                      {user.user_metadata?.first_name
-                        ? user.user_metadata.first_name
-                        : "Profilo"}
-                    </span>
-                  </Link>
-                  <form action={logout}>
-                    <button
-                      type="submit"
-                      className="flex items-center gap-2 text-sm font-medium text-destructive hover:text-destructive/80 transition-colors"
+            <div className="flex items-center gap-2">
+              <div className="hidden md:flex items-center gap-4">
+                {user ? (
+                  <div className="flex items-center gap-4">
+                    <Link
+                      href="/dashboard"
+                      className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
                     >
-                      <LogOut className="w-5 h-5" />
-                      <span className="hidden sm:inline">Esci</span>
-                    </button>
-                  </form>
-                </div>
-              ) : (
-                <>
-                  <Link
-                    href="/login"
-                    className="text-sm font-medium hover:text-primary transition-colors"
-                  >
-                    Accedi
-                  </Link>
-                  <Link
-                    href="/register"
-                    className="text-sm font-medium bg-primary text-primary-foreground px-4 py-2 rounded-full hover:bg-primary/90 transition-colors"
-                  >
-                    Iscriviti
-                  </Link>
-                </>
-              )}
+                      <UserCircle className="w-5 h-5" />
+                      <span>
+                        {user.user_metadata?.first_name
+                          ? user.user_metadata.first_name
+                          : "Profilo"}
+                      </span>
+                    </Link>
+                    <form action={logout}>
+                      <button
+                        type="submit"
+                        className="flex items-center gap-2 text-sm font-medium text-destructive hover:text-destructive/80 transition-colors"
+                      >
+                        <LogOut className="w-5 h-5" />
+                        <span className="hidden sm:inline">Esci</span>
+                      </button>
+                    </form>
+                  </div>
+                ) : (
+                  <>
+                    <Link
+                      href="/login"
+                      className="text-sm font-medium hover:text-primary transition-colors"
+                    >
+                      Accedi
+                    </Link>
+                    <Link
+                      href="/register"
+                      className="text-sm font-medium bg-primary text-primary-foreground px-4 py-2 rounded-full hover:bg-primary/90 transition-colors"
+                    >
+                      Iscriviti
+                    </Link>
+                  </>
+                )}
+              </div>
+              <MobileMenu user={user} logoutAction={logout} />
             </div>
           </div>
         </header>

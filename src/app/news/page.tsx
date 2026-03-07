@@ -44,7 +44,9 @@ export default function NewsPage() {
                     </div>
                 )}
                 {news.map((news: News) => (
-                    <NewsCard news={news} />
+                    <div key={news.id} className="p-2">
+                        <NewsCard news={news} />
+                    </div>
                 ))}
             </div>
         </div>

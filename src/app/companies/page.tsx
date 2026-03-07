@@ -14,6 +14,7 @@ export default function CompaniesPage() {
     setLoading(true);
     const isProvider = activeTab === "providers";
     const response = await getCompaniesAsync(isProvider);
+    console.log(response)
     if (response.data) {
       setCompanies(response.data);
     }
@@ -46,8 +47,8 @@ export default function CompaniesPage() {
           <button
             onClick={() => setActiveTab("providers")}
             className={`flex items-center gap-2 px-6 py-3 rounded-xl transition-all font-bold ${activeTab === "providers"
-                ? "bg-primary text-primary-foreground shadow-lg"
-                : "text-muted-foreground hover:text-foreground"
+              ? "bg-primary text-primary-foreground shadow-lg"
+              : "text-muted-foreground hover:text-foreground"
               }`}
           >
             <Building2 className="w-5 h-5" />
@@ -56,8 +57,8 @@ export default function CompaniesPage() {
           <button
             onClick={() => setActiveTab("seekers")}
             className={`flex items-center gap-2 px-6 py-3 rounded-xl transition-all font-bold ${activeTab === "seekers"
-                ? "bg-primary text-primary-foreground shadow-lg"
-                : "text-muted-foreground hover:text-foreground"
+              ? "bg-primary text-primary-foreground shadow-lg"
+              : "text-muted-foreground hover:text-foreground"
               }`}
           >
             <Search className="w-5 h-5" />
