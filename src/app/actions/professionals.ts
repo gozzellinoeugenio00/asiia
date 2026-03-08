@@ -15,3 +15,18 @@ export const getProfessionalsAsync = async (): Promise<{ data: ProfessionalWithP
     console.log(professionals);
     return { data: professionals as ProfessionalWithProfile[], error };
 }
+
+export const getProfessionalByIdAsync = async (profileId: string): Promise<{ data: ProfessionalWithProfile | null; error: any }> => {
+    const supabase = await createClient();
+
+    const { data: professional, error } = await supabase
+        .from('professionals')
+        .select(`
+            *,
+            profile:profiles(*)
+        `)
+        .eq('profile_id', profileId)
+        .single();
+
+    return { data: professional as ProfessionalWithProfile, error };
+}

@@ -2,6 +2,8 @@
 
 import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
+import { Project } from '../../../types/models';
+
 
 export async function getProjects() {
     const supabase = await createClient();
@@ -49,3 +51,16 @@ export async function deleteProject(formData: FormData) {
         revalidatePath('/portfolio');
     }
 }
+
+export async function getProjectsByUserIdAsync(userId: string): Promise<{ data: Project[]; error: any }> {
+    const supabase = await createClient();
+
+    const { data: projects, error } = await supabase
+        .from('projects')
+        .select('*')
+        .eq('user_id', userId)
+        .order('created_at', { ascending: false });
+
+    return { data: (projects || []) as Project[], error };
+}
+

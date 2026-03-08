@@ -145,7 +145,7 @@ export default function AboutPage() {
                                 href="/register"
                                 className="group flex items-center justify-center gap-2 bg-primary text-primary-foreground font-bold py-4 px-10 rounded-full hover:scale-105 transition-all"
                             >
-                                Diventa Socio
+                                Entra in ASIIA
                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
                             <Link

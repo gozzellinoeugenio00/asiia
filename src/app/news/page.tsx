@@ -30,8 +30,8 @@ export default function NewsPage() {
                     <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
                         Ultime <span className="gradient-text">News</span>
                     </h1>
-                    <p className="text-xl text-muted-foreground">
-                        Resta aggiornato sul mondo AI e sulle novità di ASIIA.
+                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                        Resta aggiornato sul mondo AI e sulle novità di ASIIA. Scopri le ultime tendenze, gli approfondimenti tecnologici e tutte le novità riguardanti l&apos;ecosistema dell&apos;Intelligenza Artificiale.
                     </p>
                 </div>
             </section>
