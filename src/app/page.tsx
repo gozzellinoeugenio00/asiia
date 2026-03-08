@@ -6,17 +6,12 @@ export default function Home() {
     <div className="flex-1 flex flex-col">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-24 pb-32">
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-background z-0" />
+        <div className="absolute inset-0 from-primary/10 to-background z-0" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 blur-[120px] rounded-full z-0" />
 
         <div className="container relative z-10 mx-auto px-4 flex flex-col items-center text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm mb-8 glass">
-            <span className="flex h-2 w-2 rounded-full bg-primary animate-pulse" />
-            Il network per i professionisti dell'Intelligenza Artificiale
-          </div>
-
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 max-w-4xl">
-            <span className="gradient-text">ASIAA </span> <br />
+            <span className="gradient-text">ASIIA </span> <br />
             Associazione Sviluppo e Integrazione Intelligenza Artificiale
           </h1>
 

@@ -1,8 +1,33 @@
+import { Project } from '../../../../types/models';
+import { Metadata } from 'next';
 import { ArrowLeft, Briefcase, MapPin, Code2, User } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getProfessionalByIdAsync } from '@/app/actions/professionals';
 import { getProjectsByUserIdAsync } from '@/app/actions/projects';
+
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+    const { id } = await params;
+    const { data: pro } = await getProfessionalByIdAsync(id);
+
+    if (!pro) return { title: 'Profilo non trovato' };
+
+    const name = `${pro.profile.first_name ?? ''} ${pro.profile.last_name ?? ''}`.trim() || 'Professionista';
+    const role = pro.role_title ?? 'Esperto AI';
+    const description = pro.bio ? (pro.bio.substring(0, 160) + '...') : `Scopri il portfolio di ${name}, ${role} su ASIIA.`;
+
+    return {
+        title: `Portfolio: ${name}`,
+        description,
+        openGraph: {
+            title: `${name} | Portfolio Professionale AI`,
+            description,
+            type: 'profile',
+            images: pro.profile.avatar_url ? [{ url: pro.profile.avatar_url }] : [],
+        }
+    };
+}
+
 
 export default async function PublicPortfolioPage({ params }: { params: { id: string } }) {
     const { id } = await params;

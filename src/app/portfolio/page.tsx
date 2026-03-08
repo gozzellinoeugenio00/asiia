@@ -1,5 +1,15 @@
 import { ArrowLeft, Briefcase, PlusCircle, Trash2 } from 'lucide-react';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: "Gestione Portfolio",
+    robots: {
+        index: false,
+        follow: false,
+    },
+};
+
 
 import { getProjects, addProject, deleteProject } from '@/app/actions/projects';
 

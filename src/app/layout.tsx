@@ -10,15 +10,52 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import MobileMenu from "@/components/MobileMenu";
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ASIIA - Associazione Sviluppo Imprese e Intelligenza Artificiale",
-  description:
-    "Mettiamo in contatto la realtà dei professionisti di intelligenza artificiale, le aziende e molto altro.",
+  metadataBase: new URL('https://asiia.it'),
+  title: {
+    default: "ASIIA - Associazione Sviluppo Imprese e Intelligenza Artificiale",
+    template: "%s | ASIIA"
+  },
+  description: "ASIIA è la prima associazione no profit dedicata allo sviluppo e all'integrazione dell'Intelligenza Artificiale. Il ponte tra talento AI e mercato aziendale.",
+  keywords: ["Intelligenza Artificiale", "AI", "Startup", "Imprese", "Associazione AI", "Talento AI", "PNRR AI", "Innovazione"],
+  authors: [{ name: "ASIIA" }],
+  creator: "ASIIA",
+  publisher: "ASIIA",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    title: "ASIIA - Associazione Sviluppo Imprese e Intelligenza Artificiale",
+    description: "Mettiamo in contatto professionisti di IA, aziende e istituzioni per promuovere lo sviluppo tecnologico in Italia.",
+    url: "https://asiia.it",
+    siteName: "ASIIA",
+    locale: "it_IT",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ASIIA - Sviluppo Imprese e IA",
+    description: "La rete italiana dei professionisti e delle imprese per l'Intelligenza Artificiale.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
+
 
 export default async function RootLayout({
   children,
@@ -32,9 +69,35 @@ export default async function RootLayout({
 
   return (
     <html lang="it" className={cn("dark", "font-sans", geist.variable)}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "ASIIA",
+              "url": "https://asiia.it",
+              "logo": "https://asiia.it/logo.png",
+              "description": "Associazione Sviluppo Imprese e Intelligenza Artificiale",
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "IT"
+              },
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+39 338 491 9351",
+                "contactType": "customer service",
+                "email": "info@asiia.it"
+              }
+            })
+          }}
+        />
+      </head>
       <body
         className={`${inter.className} min-h-screen bg-background text-foreground flex flex-col`}
       >
+
         <header className="sticky top-0 z-50 w-full  glass">
           <div className="container mx-auto h-16 flex items-center justify-between">
             <Link
