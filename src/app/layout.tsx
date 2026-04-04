@@ -88,7 +88,7 @@ export default async function RootLayout({
                 "@type": "ContactPoint",
                 "telephone": "+39 338 491 9351",
                 "contactType": "customer service",
-                "email": "info@asiia.it"
+                "email": "associazioneasiia@gmail.com"
               }
             })
           }}
@@ -315,10 +315,10 @@ export default async function RootLayout({
                       Email
                     </span>
                     <a
-                      href="mailto:info@asiia.it"
+                      href="mailto:associazioneasiia@gmail.com"
                       className="hover:text-primary transition-colors"
                     >
-                      info@asiia.it
+                      associazioneasiia@gmail.com
                     </a>
                   </li>
                 </ul>
