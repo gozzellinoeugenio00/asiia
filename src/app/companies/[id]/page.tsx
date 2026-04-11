@@ -75,14 +75,14 @@ export default async function CompanyDetailPage(props: { params: Promise<{ id: s
                     {/* About Section */}
                     <section className="glass rounded-[3rem] p-10 md:p-14 relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] -mr-32 -mt-32" />
-                        
+
                         <h2 className="text-3xl font-bold mb-8 flex items-center gap-3">
                             <span className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
                                 <ShieldCheck className="w-5 h-5 text-primary" />
                             </span>
                             Profilo Aziendale
                         </h2>
-                        
+
                         <div className="prose prose-invert max-w-none">
                             <p className="text-xl leading-relaxed text-foreground/90 whitespace-pre-wrap">
                                 {company.description || "Nessuna descrizione disponibile per questa azienda."}
@@ -100,11 +100,11 @@ export default async function CompanyDetailPage(props: { params: Promise<{ id: s
                             <h3 className="text-muted-foreground text-sm font-bold uppercase tracking-wider mb-2">Referente</h3>
                             <p className="text-xl font-bold">{company.referent_role}</p>
                         </div>
-                        <div className="glass rounded-3xl p-8">
+                        {/* <div className="glass rounded-3xl p-8">
                             <h3 className="text-muted-foreground text-sm font-bold uppercase tracking-wider mb-2">Sede Principale</h3>
                             <p className="text-xl font-bold">{company.address}, {company.address_number}</p>
                             <p className="text-muted-foreground">{company.zip_code} {company.city} ({company.province})</p>
-                        </div>
+                        </div> */}
                         <div className="glass rounded-3xl p-8 border-primary/20 bg-primary/5">
                             <h3 className="text-primary text-sm font-bold uppercase tracking-wider mb-2">Status AI</h3>
                             <p className="text-xl font-bold">
