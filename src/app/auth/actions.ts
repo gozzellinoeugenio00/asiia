@@ -52,6 +52,7 @@ export async function signup(formData: FormData) {
                     billing_pec: formData.get('billing_pec') as string,
                     referent_role: formData.get('referent_role') as string,
                     mobile_phone: formData.get('mobile_phone') as string,
+                    description: formData.get('description') as string,
                 })
             }
         }

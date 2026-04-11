@@ -1,5 +1,6 @@
 "use client";
 import { Globe, Users, Trophy, Search, Building2, Rocket } from "lucide-react";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Company } from "../../../types/models";
 import { getCompaniesAsync } from "../actions/companies";
@@ -146,9 +147,12 @@ export default function CompaniesPage() {
                   </div>
                 </div>
 
-                <button className="w-full mt-4 bg-primary text-primary-foreground hover:bg-primary/90 font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2">
+                <Link 
+                  href={`/companies/${company.id}`}
+                  className="w-full mt-4 bg-primary text-primary-foreground hover:bg-primary/90 font-bold py-3 rounded-xl transition-colors flex items-center justify-center gap-2"
+                >
                   Dettagli Azienda
-                </button>
+                </Link>
               </div>
             </div>
           ))}

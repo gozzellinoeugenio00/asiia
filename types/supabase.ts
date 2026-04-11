@@ -57,6 +57,7 @@ export type Database = {
           city: string
           company_name: string
           company_type: string
+          description: string | null
           id: string
           industry: string
           is_ai_provider: boolean | null
@@ -79,6 +80,7 @@ export type Database = {
           city: string
           company_name: string
           company_type: string
+          description?: string | null
           id: string
           industry: string
           is_ai_provider?: boolean | null
@@ -101,6 +103,7 @@ export type Database = {
           city?: string
           company_name?: string
           company_type?: string
+          description?: string | null
           id?: string
           industry?: string
           is_ai_provider?: boolean | null

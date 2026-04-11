@@ -156,6 +156,17 @@ export function RegisterForm({ error, message }: { error: boolean, message: stri
                                 <label className="text-sm font-medium" htmlFor="mobile_phone">Cellulare (Per 2FA)</label>
                                 <input id="mobile_phone" name="mobile_phone" type="tel" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
                             </div>
+                            <div className="space-y-2 md:col-span-2">
+                                <label className="text-sm font-medium" htmlFor="description">Descrizione Attività <span className="text-destructive">*</span></label>
+                                <textarea
+                                    id="description"
+                                    name="description"
+                                    required
+                                    rows={4}
+                                    placeholder="Descrivi brevemente di cosa si occupa la tua azienda e quali soluzioni AI offrite o cercate..."
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium resize-none"
+                                />
+                            </div>
                         </div>
                     </div>
                 )}
