@@ -69,16 +69,16 @@ export function RegisterForm({ error, message }: { error: boolean, message: stri
                                 <input id="company_name" name="company_name" type="text" required className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm font-medium" htmlFor="vat_number">Partita IVA <span className="text-destructive">*</span></label>
-                                <input id="vat_number" name="vat_number" type="text" required className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
+                                <label className="text-sm font-medium" htmlFor="vat_number">Partita IVA </label>
+                                <input id="vat_number" name="vat_number" type="text" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm font-medium" htmlFor="tax_code">Codice Fiscale <span className="text-destructive">*</span></label>
-                                <input id="tax_code" name="tax_code" type="text" required className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
+                                <label className="text-sm font-medium" htmlFor="tax_code">Codice Fiscale</label>
+                                <input id="tax_code" name="tax_code" type="text" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
                             </div>
                             <div className="space-y-2">
                                 <label className="text-sm font-medium" htmlFor="industry">Settore Merceologico / Ateco <span className="text-destructive">*</span></label>
-                                <input id="industry" name="industry" type="text" required className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
+                                <input id="industry" name="industry" type="text" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
                             </div>
                             <div className="space-y-2 md:col-span-2">
                                 <label className="text-sm font-medium" htmlFor="company_type">Tipo di Società <span className="text-destructive">*</span></label>
@@ -96,10 +96,10 @@ export function RegisterForm({ error, message }: { error: boolean, message: stri
                         <h3 className="text-lg font-bold gradient-text">2. Sede e Contatti</h3>
                         <div className="grid md:grid-cols-2 gap-6">
                             <div className="space-y-2 md:col-span-2">
-                                <label className="text-sm font-medium" htmlFor="address">Indirizzo Sede Legale <span className="text-destructive">*</span></label>
+                                <label className="text-sm font-medium" htmlFor="address">Indirizzo Sede Legale</label>
                                 <div className="flex gap-4">
-                                    <input id="address" name="address" type="text" placeholder="Via/Piazza" required className="flex-1 bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
-                                    <input id="address_number" name="address_number" type="text" placeholder="Civico" required className="w-24 bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
+                                    <input id="address" name="address" type="text" placeholder="Via/Piazza" className="flex-1 bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
+                                    <input id="address_number" name="address_number" type="text" placeholder="Civico" className="w-24 bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
                                 </div>
                             </div>
                             <div className="space-y-2">
@@ -108,12 +108,12 @@ export function RegisterForm({ error, message }: { error: boolean, message: stri
                             </div>
                             <div className="space-y-2 flex gap-4">
                                 <div className="flex-1">
-                                    <label className="text-sm font-medium" htmlFor="zip_code">CAP <span className="text-destructive">*</span></label>
-                                    <input id="zip_code" name="zip_code" type="text" required className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
+                                    <label className="text-sm font-medium" htmlFor="zip_code">CAP</label>
+                                    <input id="zip_code" name="zip_code" type="text" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
                                 </div>
                                 <div className="w-24">
-                                    <label className="text-sm font-medium" htmlFor="province">Prov. <span className="text-destructive">*</span></label>
-                                    <input id="province" name="province" type="text" required placeholder="RM" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium uppercase" maxLength={2} />
+                                    <label className="text-sm font-medium" htmlFor="province">Prov.</label>
+                                    <input id="province" name="province" type="text"  placeholder="RM" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium uppercase" maxLength={2} />
                                 </div>
                             </div>
                             <div className="space-y-2 md:col-span-2">
@@ -121,12 +121,12 @@ export function RegisterForm({ error, message }: { error: boolean, message: stri
                                 <input id="operating_office" name="operating_office" type="text" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm font-medium" htmlFor="pec_email">Email Aziendale (PEC) <span className="text-destructive">*</span></label>
-                                <input id="pec_email" name="pec_email" type="email" required className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
+                                <label className="text-sm font-medium" htmlFor="pec_email">Email Aziendale (PEC)</label>
+                                <input id="pec_email" name="pec_email" type="email" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-sm font-medium" htmlFor="phone">Telefono/Centralino <span className="text-destructive">*</span></label>
-                                <input id="phone" name="phone" type="tel" required className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
+                                <label className="text-sm font-medium" htmlFor="phone">Telefono/Centralino</label>
+                                <input id="phone" name="phone" type="tel" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
                             </div>
                             <div className="space-y-2 md:col-span-2">
                                 <label className="text-sm font-medium" htmlFor="website">Sito Web</label>
@@ -137,8 +137,8 @@ export function RegisterForm({ error, message }: { error: boolean, message: stri
                         <h3 className="text-lg font-bold gradient-text">3. Fatturazione Elettronica</h3>
                         <div className="grid md:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="text-sm font-medium" htmlFor="sdi_code">Codice Destinatario (SDI) <span className="text-destructive">*</span></label>
-                                <input id="sdi_code" name="sdi_code" type="text" required maxLength={7} className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium uppercase" />
+                                <label className="text-sm font-medium" htmlFor="sdi_code">Codice Destinatario (SDI)</label>
+                                <input id="sdi_code" name="sdi_code" type="text" maxLength={7} className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium uppercase" />
                             </div>
                             <div className="space-y-2">
                                 <label className="text-sm font-medium" htmlFor="billing_pec">PEC Fatturazione (Opzionale)</label>
@@ -149,19 +149,18 @@ export function RegisterForm({ error, message }: { error: boolean, message: stri
                         <h3 className="text-lg font-bold gradient-text">4. Dati Referente</h3>
                         <div className="grid md:grid-cols-2 gap-6">
                             <div className="space-y-2">
-                                <label className="text-sm font-medium" htmlFor="referent_role">Ruolo in Azienda <span className="text-destructive">*</span></label>
-                                <input id="referent_role" name="referent_role" type="text" required placeholder="Es. CEO, HR, Manager" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
+                                <label className="text-sm font-medium" htmlFor="referent_role">Ruolo in Azienda </label>
+                                <input id="referent_role" name="referent_role" type="text"  placeholder="Es. CEO, HR, Manager" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
                             </div>
                             <div className="space-y-2">
                                 <label className="text-sm font-medium" htmlFor="mobile_phone">Cellulare (Per 2FA)</label>
                                 <input id="mobile_phone" name="mobile_phone" type="tel" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
                             </div>
                             <div className="space-y-2 md:col-span-2">
-                                <label className="text-sm font-medium" htmlFor="description">Descrizione Attività <span className="text-destructive">*</span></label>
+                                <label className="text-sm font-medium" htmlFor="description">Descrizione Attività</label>
                                 <textarea
                                     id="description"
                                     name="description"
-                                    required
                                     rows={4}
                                     placeholder="Descrivi brevemente di cosa si occupa la tua azienda e quali soluzioni AI offrite o cercate..."
                                     className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium resize-none"
