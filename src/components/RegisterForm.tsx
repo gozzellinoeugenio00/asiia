@@ -1,20 +1,29 @@
 'use client';
 
 import { useState } from 'react';
-import { User, Building2, AlertCircle } from 'lucide-react';
+import { User, Building2, AlertCircle, Cpu } from 'lucide-react';
 import { signup } from '@/app/auth/actions';
 
 export function RegisterForm({ error, message }: { error: boolean, message: string }) {
-    const [role, setRole] = useState<'professional' | 'company'>('professional');
+    const [role, setRole] = useState<'professional' | 'company' | 'user'>('professional');
     return (
         <>
-            <div className="grid grid-cols-2 gap-4 mb-8">
+            <div className="grid grid-cols-3 gap-4 mb-8">
+                <button
+                    type="button"
+                    onClick={() => setRole('user')}
+                    className={`flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border-2 transition-all ${role === 'user' ? 'border-primary bg-primary/10 text-primary' : 'border-white/10 text-muted-foreground hover:border-white/30 hover:bg-white/5'}`}
+                >
+                    <User className="w-8 h-8" />
+                    <span className="font-bold">Utente</span>
+                </button>
+
                 <button
                     type="button"
                     onClick={() => setRole('professional')}
                     className={`flex flex-col items-center justify-center gap-3 p-6 rounded-2xl border-2 transition-all ${role === 'professional' ? 'border-primary bg-primary/10 text-primary' : 'border-white/10 text-muted-foreground hover:border-white/30 hover:bg-white/5'}`}
                 >
-                    <User className="w-8 h-8" />
+                    <Cpu className="w-8 h-8" />
                     <span className="font-bold">Professionista</span>
                 </button>
 
@@ -38,29 +47,31 @@ export function RegisterForm({ error, message }: { error: boolean, message: stri
             <form className="space-y-6" action={signup}>
                 <input type="hidden" name="role" value={role} />
 
+                {/* Common Fields */}
                 <div className="grid md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                        <label className="text-sm font-medium" htmlFor="first_name">Nome</label>
+                        <label className="text-sm font-medium" htmlFor="first_name">Nome <span className="text-destructive">*</span></label>
                         <input id="first_name" name="first_name" type="text" required placeholder="Mario" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
                     </div>
                     <div className="space-y-2">
-                        <label className="text-sm font-medium" htmlFor="last_name">Cognome</label>
+                        <label className="text-sm font-medium" htmlFor="last_name">Cognome <span className="text-destructive">*</span></label>
                         <input id="last_name" name="last_name" type="text" required placeholder="Rossi" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
                     </div>
                 </div>
 
                 <div className="space-y-2">
-                    <label className="text-sm font-medium" htmlFor="email">Email {role === 'company' && '(Email diretta referente / Login)'}</label>
+                    <label className="text-sm font-medium" htmlFor="email">Email <span className="text-destructive">*</span> {role === 'company' && '(Referente)'}</label>
                     <input id="email" name="email" type="email" required placeholder="tuonome@esempio.com" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
                 </div>
 
                 <div className="space-y-2">
-                    <label className="text-sm font-medium" htmlFor="password">Password</label>
+                    <label className="text-sm font-medium" htmlFor="password">Password <span className="text-destructive">*</span></label>
                     <input id="password" name="password" type="password" required placeholder="••••••••" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
                     <p className="text-xs text-muted-foreground mt-1">Minimo 8 caratteri, almeno una lettera maiuscola e un numero.</p>
                 </div>
 
-                {role === 'company' && (
+                {/* Role Specific Fields */}
+                {role === 'company' ? (
                     <div className="mt-8 space-y-6 border-t border-white/10 pt-8">
                         <h3 className="text-lg font-bold gradient-text">1. Dati Aziendali</h3>
                         <div className="grid md:grid-cols-2 gap-6">
@@ -113,7 +124,7 @@ export function RegisterForm({ error, message }: { error: boolean, message: stri
                                 </div>
                                 <div className="w-24">
                                     <label className="text-sm font-medium" htmlFor="province">Prov.</label>
-                                    <input id="province" name="province" type="text"  placeholder="RM" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium uppercase" maxLength={2} />
+                                    <input id="province" name="province" type="text" placeholder="RM" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium uppercase" maxLength={2} />
                                 </div>
                             </div>
                             <div className="space-y-2 md:col-span-2">
@@ -150,7 +161,7 @@ export function RegisterForm({ error, message }: { error: boolean, message: stri
                         <div className="grid md:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label className="text-sm font-medium" htmlFor="referent_role">Ruolo in Azienda </label>
-                                <input id="referent_role" name="referent_role" type="text"  placeholder="Es. CEO, HR, Manager" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
+                                <input id="referent_role" name="referent_role" type="text" placeholder="Es. CEO, HR, Manager" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
                             </div>
                             <div className="space-y-2">
                                 <label className="text-sm font-medium" htmlFor="mobile_phone">Cellulare (Per 2FA)</label>
@@ -168,13 +179,39 @@ export function RegisterForm({ error, message }: { error: boolean, message: stri
                             </div>
                         </div>
                     </div>
-                )}
+                ) : role === 'professional' ? (
+                    <div className="mt-8 space-y-6 border-t border-white/10 pt-8">
+                        <h4 className="text-md font-bold text-primary">Dettagli Professionali AI</h4>
+                        <div className="grid md:grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium" htmlFor="role_title">Titolo / Ruolo <span className="text-destructive">*</span></label>
+                                <input id="role_title" name="role_title" type="text" required placeholder="Es. Senior AI Specialist" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-sm font-medium" htmlFor="location">Sede / Città <span className="text-destructive">*</span></label>
+                                <input id="location" name="location" type="text" required placeholder="Es. Roma, Italia" className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
+                            </div>
+                            <div className="space-y-2 md:col-span-2">
+                                <label className="text-sm font-medium" htmlFor="company">Azienda presso cui lavori (Opzionale)</label>
+                                <input id="company" name="company" type="text" placeholder="Es. Reply S.p.A." className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
+                            </div>
+                            <div className="space-y-2 md:col-span-2">
+                                <label className="text-sm font-medium" htmlFor="skills">Skill Tecniche (separate da virgola) <span className="text-destructive">*</span></label>
+                                <input id="skills" name="skills" type="text" required placeholder="Es. Python, TensorFlow, NLP, OpenAI..." className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium" />
+                            </div>
+                            <div className="space-y-2 md:col-span-2">
+                                <label className="text-sm font-medium" htmlFor="bio">Bio Professionale <span className="text-destructive">*</span></label>
+                                <textarea id="bio" name="bio" rows={4} required placeholder="Racconta brevemente la tua esperienza con l'Intelligenza Artificiale..." className="w-full bg-white/5 border border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium resize-none" />
+                            </div>
+                        </div>
+                    </div>
+                ) : null}
 
                 <button
                     type="submit"
                     className="w-full bg-primary text-primary-foreground font-bold py-3.5 px-4 rounded-xl hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-[0_0_20px_rgba(var(--primary),0.3)] mt-2"
                 >
-                    Crea Account {role === 'company' ? 'Aziendale' : ''}
+                    Crea Account {role !== 'user' ? (role === 'company' ? 'Aziendale' : 'Professionista') : ''}
                 </button>
             </form>
         </>

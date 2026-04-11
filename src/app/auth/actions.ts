@@ -53,6 +53,13 @@ export async function signup(formData: FormData) {
                     referent_role: formData.get('referent_role') as string,
                     mobile_phone: formData.get('mobile_phone') as string,
                     description: formData.get('description') as string,
+                }),
+                ...(formData.get('role') === 'professional' && {
+                    role_title: formData.get('role_title') as string,
+                    company: formData.get('company') as string,
+                    location: formData.get('location') as string,
+                    bio: formData.get('bio') as string,
+                    skills: (formData.get('skills') as string)?.split(',').map(s => s.trim()).filter(Boolean) || [],
                 })
             }
         }
