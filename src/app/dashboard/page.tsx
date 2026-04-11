@@ -1,14 +1,31 @@
 import { Users, Briefcase, MessagesSquare, Activity, ChevronRight, BarChart, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import { createClient } from '@/utils/supabase/server';
 
 export default async function DashboardPage() {
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
 
-    // Fallback if metadata is missing
-    const role = user?.user_metadata?.role || 'professional';
-    const name = user?.user_metadata?.first_name || 'Utente';
+    if (!user) {
+        redirect('/login');
+    }
+
+    // Fetch extra profile info from public.profiles
+    const { data: profile } = await supabase
+        .from('profiles')
+        .select('*')
+        .eq('id', user.id)
+        .single();
+
+    // Prefer data from public.profiles, fallback to metadata
+    const profileData = profile as any;
+    const role = profileData?.role || user.user_metadata?.role || 'professional';
+    const name = profileData?.first_name || user.user_metadata?.first_name || 'Utente';
+    const isAdmin = profileData?.isAdmin || user.user_metadata?.isAdmin;
+
+    console.log('User Role:', role);
+    console.log('Is Admin:', isAdmin);
     return (
         <div className="container mx-auto px-4 py-8">
             <div className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -16,6 +33,11 @@ export default async function DashboardPage() {
                     <h1 className="text-3xl font-bold mb-2">Benvenuto, {name} 👋</h1>
                     <p className="text-muted-foreground">Ecco una panoramica della community ASIIA oggi.</p>
                 </div>
+                {isAdmin && <div>
+                    <Link href="/dashboard/news/create" className="inline-flex items-center gap-2 bg-primary text-primary-foreground font-bold px-6 py-3 rounded-xl hover:bg-primary/90 transition-all shadow-lg hover:-translate-y-1">
+                        Crea News
+                    </Link>
+                </div>}
 
                 <div className="flex gap-4">
                     {role === 'professional' ? (
