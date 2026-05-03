@@ -18,7 +18,7 @@ export default function AboutPage() {
                         Chi <span className="gradient-text">Siamo</span>
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed">
-                        ASIIA è la prima associazione no profit dedicata allo sviluppo e all'integrazione dell'Intelligenza Artificiale, con marchio registrato a livello Europeo. Siamo il ponte tra il talento tecnologico e le necessità del mercato.
+                        ASIIA è la prima associazione no profit dedicata allo sviluppo e all'integrazione dell'Intelligenza Artificiale. Siamo il ponte tra il talento tecnologico e le necessità del mercato.
                     </p>
                 </div>
             </section>

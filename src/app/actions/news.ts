@@ -82,3 +82,15 @@ export const createNewsAsync = async (formData: FormData): Promise<{ success: bo
         return { success: false, error: e.message };
     }
 }
+
+export const getNewsByIdAsync = async (id: string): Promise<{ data: News | null; error: any }> => {
+    const supabase = await createClient();
+
+    const { data: news, error } = await supabase
+        .from('news')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+    return { data: news as News, error };
+}

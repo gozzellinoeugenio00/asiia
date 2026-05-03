@@ -207,6 +207,25 @@ export function RegisterForm({ error, message }: { error: boolean, message: stri
                     </div>
                 ) : null}
 
+                <div className="mt-8 mb-6">
+                    <label className="flex items-start gap-3 cursor-pointer group">
+                        <div className="relative flex items-center justify-center mt-0.5">
+                            <input 
+                                type="checkbox" 
+                                name="privacy_accepted" 
+                                required 
+                                className="peer appearance-none w-5 h-5 border-2 border-white/20 rounded-md bg-white/5 checked:bg-primary checked:border-primary transition-all cursor-pointer"
+                            />
+                            <svg className="absolute w-3 h-3 text-primary-foreground opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <span className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
+                            Ho letto e accetto la <a href="/privacy" target="_blank" className="text-primary hover:underline font-bold">Privacy Policy</a> per il trattamento dei miei dati personali.*
+                        </span>
+                    </label>
+                </div>
+
                 <button
                     type="submit"
                     className="w-full bg-primary text-primary-foreground font-bold py-3.5 px-4 rounded-xl hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-[0_0_20px_rgba(var(--primary),0.3)] mt-2"

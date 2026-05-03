@@ -16,8 +16,7 @@ export default function Home() {
           </h1>
 
           <p className="text-xl text-muted-foreground mb-10 max-w-2xl">
-            Unisciti ad ASIIA. La prima associazione no profit, con marchio
-            registrato a livello Europeo a creare un'ecosistema dove aziende,
+            Unisciti ad ASIIA. La prima associazione no profit, nata per creare un'ecosistema dove aziende,
             professionisti,appassionati e studenti possono entrare in contatto
             tra loro
           </p>

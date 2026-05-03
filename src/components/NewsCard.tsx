@@ -1,16 +1,23 @@
 import { News } from "../../types/models";
-import { ArrowRight, Calendar } from "lucide-react";
+import { ArrowRight, Calendar, Newspaper } from "lucide-react";
+import Link from "next/link";
 
 export default function NewsCard({ news }: { news: News }) {
     return (
         <div key={news.id} className="glass rounded-3xl overflow-hidden group hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 flex flex-col">
             <div className="relative h-64 overflow-hidden">
                 <div className="absolute inset-0 from-background/90 to-transparent z-10" />
-                <img
-                    src={news.image_url || ''}
-                    alt={news.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
+                {news.image_url ? (
+                    <img
+                        src={news.image_url}
+                        alt={news.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-white/5 border border-white/10 group-hover:scale-110 transition-transform duration-700">
+                        <Newspaper className="w-16 h-16 text-primary/40" />
+                    </div>
+                )}
                 <div className="absolute top-4 left-4 z-20">
                     <span className="bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
                         {news.category}
@@ -34,9 +41,9 @@ export default function NewsCard({ news }: { news: News }) {
                     {news.excerpt}
                 </p>
 
-                <button className="flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all w-fit">
+                <Link href={`/news/${news.id}`} className="flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all w-fit">
                     Leggi l'Articolo <ArrowRight className="w-5 h-5" />
-                </button>
+                </Link>
             </div>
         </div>
     );

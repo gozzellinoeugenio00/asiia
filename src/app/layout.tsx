@@ -328,7 +328,7 @@ export default async function RootLayout({
             <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
               <p>
                 &copy; {new Date().getFullYear()} ASIIA. Tutti i diritti
-                riservati. Marchio registrato EU.
+                riservati.
               </p>
               <div className="flex gap-6">
                 <Link href="#" className="hover:text-primary transition-colors">

@@ -78,7 +78,9 @@ export default function ProfessionalsPage() {
                                     {pro.profile.first_name ?? ''} {pro.profile.last_name ?? ''}
                                     {(!pro.profile.first_name && !pro.profile.last_name) && 'Professional'}
                                 </h3>
-                                <h4 className=" font-medium mb-1">{pro.bio}</h4>
+                                <h4 className=" font-medium mb-1 ">
+                                    {pro.bio && pro.bio.length > 200 ? `${pro.bio.substring(0, 200)}...` : pro.bio}
+                                </h4>
                                 <p className="text-primary mb-4">{pro.role_title}</p>
 
                                 <div className="space-y-2 mb-6 text-sm text-muted-foreground">

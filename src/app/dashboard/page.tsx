@@ -61,8 +61,8 @@ export default async function DashboardPage() {
                     </div>
                     <p className="text-muted-foreground font-medium mb-1">Totale visualizzazioni del profilo</p>
                     <div className="flex items-end gap-3">
-                        <h2 className="text-4xl font-extrabold">1,245</h2>
-                        <span className="text-emerald-400 text-sm font-bold bg-emerald-400/10 px-2 py-1 rounded">+12%</span>
+                        <h2 className="text-4xl font-extrabold">NA</h2>
+                        <span className="text-emerald-400 text-sm font-bold bg-emerald-400/10 px-2 py-1 rounded">0%</span>
                     </div>
                 </div>
 
@@ -72,8 +72,8 @@ export default async function DashboardPage() {
                     </div>
                     <p className="text-muted-foreground font-medium mb-1">Aziende Contattate</p>
                     <div className="flex items-end gap-3">
-                        <h2 className="text-4xl font-extrabold">340</h2>
-                        <span className="text-emerald-400 text-sm font-bold bg-emerald-400/10 px-2 py-1 rounded">+5%</span>
+                        <h2 className="text-4xl font-extrabold">NA</h2>
+                        <span className="text-emerald-400 text-sm font-bold bg-emerald-400/10 px-2 py-1 rounded">0%</span>
                     </div>
                 </div>
 
@@ -83,8 +83,8 @@ export default async function DashboardPage() {
                     </div>
                     <p className="text-muted-foreground font-medium mb-1">Connessioni Attive</p>
                     <div className="flex items-end gap-3">
-                        <h2 className="text-4xl font-extrabold">8,930</h2>
-                        <span className="text-emerald-400 text-sm font-bold bg-emerald-400/10 px-2 py-1 rounded">+24%</span>
+                        <h2 className="text-4xl font-extrabold">NA</h2>
+                        <span className="text-emerald-400 text-sm font-bold bg-emerald-400/10 px-2 py-1 rounded">0%</span>
                     </div>
                 </div>
 
@@ -94,14 +94,14 @@ export default async function DashboardPage() {
                     </div>
                     <p className="text-muted-foreground font-medium mb-1">Visite Mensili</p>
                     <div className="flex items-end gap-3">
-                        <h2 className="text-4xl font-extrabold">45.2K</h2>
-                        <span className="text-red-400 text-sm font-bold bg-red-400/10 px-2 py-1 rounded">-2%</span>
+                        <h2 className="text-4xl font-extrabold">NA</h2>
+                        <span className="text-red-400 text-sm font-bold bg-red-400/10 px-2 py-1 rounded">0%</span>
                     </div>
                 </div>
             </div>
 
             <div className="grid lg:grid-cols-3 gap-8">
-                <div className="lg:col-span-2 glass p-8 rounded-3xl border border-white/5">
+                {/* <div className="lg:col-span-2 glass p-8 rounded-3xl border border-white/5">
                     <div className="flex items-center justify-between mb-8">
                         <h3 className="text-xl font-bold flex items-center gap-2">
                             <BarChart className="text-primary w-5 h-5" />
@@ -121,9 +121,9 @@ export default async function DashboardPage() {
                             </div>
                         ))}
                     </div>
-                </div>
+                </div> */}
 
-                <div className="glass p-8 rounded-3xl border border-white/5">
+                {/* <div className="glass p-8 rounded-3xl border border-white/5">
                     <h3 className="text-xl font-bold mb-6 flex items-center justify-between">
                         Ultimi Iscritti
                         <Link href="/professionals" className="text-sm text-primary hover:underline font-medium flex items-center">
@@ -145,7 +145,7 @@ export default async function DashboardPage() {
                             </div>
                         ))}
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );

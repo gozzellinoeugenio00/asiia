@@ -1,6 +1,6 @@
 import { Project } from '../../../../types/models';
 import { Metadata } from 'next';
-import { ArrowLeft, Briefcase, MapPin, Code2, User } from 'lucide-react';
+import { ArrowLeft, Briefcase, MapPin, Code2, User, Phone } from 'lucide-react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getProfessionalByIdAsync } from '@/app/actions/professionals';
@@ -76,6 +76,10 @@ export default async function PublicPortfolioPage({ params }: { params: { id: st
                             <div className="flex items-center gap-3 text-muted-foreground">
                                 <Briefcase className="w-5 h-5 text-primary/60" />
                                 <span>{pro.company || 'Libero professionista'}</span>
+                            </div>
+                            <div className="flex items-center gap-3 text-muted-foreground">
+                                <Phone className="w-5 h-5 text-primary/60" />
+                                <span>{(pro.profile as any).phone || (pro.profile as any).mobile_phone || (pro as any).phone || (pro as any).mobile_phone || 'Telefono non specificato'}</span>
                             </div>
                         </div>
 
