@@ -211,8 +211,7 @@ export default async function RootLayout({
                 </Link>
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   La prima associazione no profit dedicata allo sviluppo e
-                  all&apos;integrazione dell&apos;Intelligenza Artificiale, con marchio
-                  registrato a livello Europeo. Il ponte tra talento e mercato.
+                  all&apos;integrazione dell&apos;Intelligenza Artificiale. Il ponte tra talento e mercato.
                 </p>
               </div>
 
